@@ -1,0 +1,9 @@
+*.pyc
+*~
+connect_settings.py
+shop_settings.py
+csv/*.csv
+connect/*.json
+tracking/*
+!tracking/README
+

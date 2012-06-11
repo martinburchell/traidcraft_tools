@@ -1,0 +1,28 @@
+A number of tools to help Traidcraft Fair Traders
+
+Prerequisites:
+
+* python (tested on 2.7.1)
+* lxml
+
+check_requests.py
+-----------------
+Run as a cron job to monitor the Traidcraft Connect website for new requests.
+
+* Copy connect_settings.py.example to connect_settings.py
+* Edit this file with your settings
+
+update_stock.py
+---------------
+Upload stock as a CSV file to your Connect website.
+
+* Create connect_settings.py as above
+* The csv file is expected to be called csv/data.csv and has the fields category, order code,price,quantity,best before date
+* Only order code and quantity fields will be read
+ 
+track_orders.py
+---------------
+Run as a cron job to get email notifications when your last Traidcraft order changes status
+
+* Copy shop_settings.py.example to shop_settings.py
+* Edit this file with your settings
