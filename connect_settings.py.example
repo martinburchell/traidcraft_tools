@@ -1,0 +1,3 @@
+CONNECT_DOMAIN = 'mysubdomain.traidcraft-connect.co.uk'
+CONNECT_LOGIN = 'myemailaddress'
+CONNECT_PASSWORD = 'mypassword'
