@@ -71,6 +71,7 @@ class ShopWebsite(Website):
             self.dump_log(old_log)
             print '*after*:'
             self.dump_log(new_log)
+            print
 
             if not os.path.exists(order_directory):
                 os.makedirs(order_directory)
