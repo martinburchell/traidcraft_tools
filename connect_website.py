@@ -104,7 +104,7 @@ class ConnectWebsite(Website):
     def dump_requests(self, requests):
         for request in requests:
             for column in self.get_request_columns():
-                cell = u'%s\t' % request[column].replace(u'\xa3', 'L')
+                cell = '%s\t' % request[column]
                 print cell,
             print
             
