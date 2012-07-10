@@ -160,6 +160,9 @@ class ConnectWebsite(Website):
                 if span is not None:
                     a = span.find('a')
                     text = a.text
+            elif column == 'product name':
+                a = cell.find('a')
+                text = a.text
             else:
                 text = cell.text
             
