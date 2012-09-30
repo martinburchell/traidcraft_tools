@@ -155,6 +155,11 @@ class ConnectWebsite(Website):
         for cell in selector(root):
             column = i.next()
 
+            text = cell.text
+
+            if text.strip() == 'Total value:':
+                pass
+
             if column == 'user':
                 span = cell.find('span')
                 if span is not None:
@@ -163,8 +168,6 @@ class ConnectWebsite(Website):
             elif column == 'product name':
                 a = cell.find('a')
                 text = a.text
-            else:
-                text = cell.text
             
             request[column] = text.strip()           
 
