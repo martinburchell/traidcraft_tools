@@ -1,7 +1,7 @@
 import json
 import os.path
 import urllib
-
+from urllib2 import HTTPError
 
 from lxml.cssselect import CSSSelector
 
@@ -58,7 +58,12 @@ class ShopWebsite(Website):
                                 consignment_number, consignment_url)
 
     def track_activity(self, order_number, consignment_number, tracking_url):
-        new_log = self.get_new_log(tracking_url)
+
+        try:
+            new_log = self.get_new_log(tracking_url)
+        except HTTPError:
+            print 'Unable to load page %s' % tracking_url
+            return
 
         order_directory = os.path.join(self.tracking_directory, order_number)
         file_name = os.path.join(order_directory, consignment_number + '.json')
@@ -88,6 +93,7 @@ class ShopWebsite(Website):
 
     def get_new_log(self, tracking_url):
         root = self.send_request_and_return_dom(tracking_url)
+
         selector = CSSSelector('.trackingtable tr td')
 
         log = []
