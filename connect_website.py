@@ -121,7 +121,7 @@ class ConnectWebsite(Website):
                                            'commit' : 'Log in'})
             if self.debug:
                 print 'Logging in...'
-            self.opener.open(session_page, login_data).close()
+            self.send_request_with_retry(session_page, login_data).close()
             return True
             
         return False

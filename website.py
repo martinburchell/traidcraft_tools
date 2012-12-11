@@ -1,6 +1,7 @@
 import cookielib
 import urllib2
 from lxml.html.soupparser import fromstring
+from retry import retry
 
 class Website(object):
     debug = False
@@ -14,8 +15,12 @@ class Website(object):
         self.password = password
 
     def send_request_and_return_dom(self, url, post_data=None):
-        response = self.opener.open(url, post_data)
+        response = self.send_request_with_retry(url, post_data)
         content = response.read()
         response.close()
 
         return fromstring(content)
+
+    @retry(urllib2.URLError, tries=4, delay=3, backoff=2)
+    def send_request_with_retry(self, url, post_data):
+        return self.opener.open(url, post_data)
