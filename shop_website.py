@@ -146,7 +146,8 @@ class ShopWebsite(Website):
         if self.debug:
             print 'Logging in...'
         
-        self.opener.open(self.signin_page, login_data).close()
+        response = self.send_request_with_retry(self.signin_page, login_data)
+        response.close()
         
 
     def read_hidden_fields(self):
