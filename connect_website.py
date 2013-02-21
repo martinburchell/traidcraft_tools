@@ -103,7 +103,7 @@ class ConnectWebsite(Website):
 
     def dump_requests(self, requests):
         for request in requests:
-            for column in self.get_request_columns():
+            for column in self.get_stored_columns():
                 cell = '%s\t' % request[column]
                 print cell,
             print
@@ -149,7 +149,7 @@ class ConnectWebsite(Website):
 
         requests = []
 
-        i = iter(self.get_request_column())
+        i = iter(self.get_displayed_column())
         request = {}
 
         for cell in selector(root):
@@ -158,7 +158,7 @@ class ConnectWebsite(Website):
             text = cell.text
 
             if text.strip() == 'Total value:':
-                pass
+                continue
 
             if column == 'user':
                 span = cell.find('span')
@@ -168,6 +168,8 @@ class ConnectWebsite(Website):
             elif column == 'product name':
                 a = cell.find('a')
                 text = a.text
+            elif column == 'category name':
+                continue
             
             request[column] = text.strip()           
 
@@ -177,12 +179,16 @@ class ConnectWebsite(Website):
 
         return requests
     
-    def get_request_column(self):
+    def get_displayed_column(self):
         while True:
-            for column in self.get_request_columns():
+            for column in self.get_displayed_columns():
                 yield column
 
-    def get_request_columns(self):
+    def get_stored_columns(self):
+        return ['user', 'last update', 'product name',
+                'quantity', 'unit price', 'total price']        
+
+    def get_displayed_columns(self):
         return ['user', 'last update', 'category name', 'product name',
                 'quantity', 'unit price', 'total price']
 
