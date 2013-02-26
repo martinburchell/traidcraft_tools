@@ -9,9 +9,9 @@ from website import Website
 
 class ShopWebsite(Website):
 
-    def __init__(self, login, password, tracking_directory):
+    def __init__(self, login, password, tracking_directory, logger=None):
         super(ShopWebsite, self).__init__('www.traidcraftshop.co.uk',
-                                         login, password)
+                                         login, password, logger)
         self.signin_page = self.secure_domain + '/signin.aspx'
         self.tracking_directory = tracking_directory
 

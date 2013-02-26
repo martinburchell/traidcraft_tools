@@ -6,4 +6,4 @@ csv/*.csv
 connect/*.json
 tracking/*
 !tracking/README
-
+log/*.log

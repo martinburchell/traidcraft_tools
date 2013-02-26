@@ -1,6 +1,6 @@
 import time
 
-def retry(ExceptionToCheck, tries=4, delay=3, backoff=2, logger=None):
+def retry(ExceptionToCheck, tries=4, delay=3, backoff=2):
     """Retry calling the decorated function using an exponential backoff.
 
     http://www.saltycrane.com/blog/2009/11/trying-out-retry-decorator-python/
@@ -20,25 +20,25 @@ def retry(ExceptionToCheck, tries=4, delay=3, backoff=2, logger=None):
     :type logger: logging.Logger instance
     """
     def deco_retry(f):
-        def f_retry(*args, **kwargs):
+        def f_retry(self, *args, **kwargs):
             mtries, mdelay = tries, delay
             try_one_last_time = True
             while mtries > 1:
                 try:
-                    return f(*args, **kwargs)
+                    return f(self, *args, **kwargs)
                     try_one_last_time = False
                     break
                 except ExceptionToCheck, e:
                     msg = "%s, Retrying in %d seconds..." % (str(e), mdelay)
-                    if logger:
-                        logger.warning(msg)
+                    if self.logger:
+                        self.logger.warning(msg)
                     else:
                         print msg
                     time.sleep(mdelay)
                     mtries -= 1
                     mdelay *= backoff
             if try_one_last_time:
-                return f(*args, **kwargs)
+                return f(self, *args, **kwargs)
             return
         return f_retry  # true decorator
     return deco_retry

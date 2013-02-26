@@ -11,8 +11,9 @@ from website import Website
 class ConnectWebsite(Website):
     debug = False
 
-    def __init__(self, domain, login, password, requests_directory):
-        super(ConnectWebsite, self).__init__(domain, login, password)
+    def __init__(self, domain, login, password, requests_directory, 
+                 logger=None):
+        super(ConnectWebsite, self).__init__(domain, login, password, logger)
         self.requests_directory = requests_directory
         self.requests_file_name = os.path.join(requests_directory,
                                                'requests.json')
