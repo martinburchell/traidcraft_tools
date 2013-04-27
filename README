@@ -4,6 +4,7 @@ Prerequisites:
 
 * python (tested on 2.7.1)
 * lxml
+* BeautifulSoup
 
 check_requests.py
 -----------------
