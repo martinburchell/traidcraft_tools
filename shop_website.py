@@ -5,7 +5,7 @@ from urllib2 import HTTPError
 
 from lxml.cssselect import CSSSelector
 
-from website import Website
+from web_automation.website import Website
 
 class ShopWebsite(Website):
 

@@ -6,7 +6,7 @@ import urllib
 from lxml import etree
 from lxml.cssselect import CSSSelector
 
-from website import Website
+from web_automation.website import Website
 
 class ConnectWebsite(Website):
     debug = False
