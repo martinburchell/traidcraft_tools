@@ -1,5 +1,12 @@
 A number of tools to help Traidcraft Fair Traders
 
+After cloning the repository you'll need to run
+
+git submodule init
+git submodule update
+
+from within the traidcraft_tools directory
+
 Prerequisites:
 
 * python (tested on 2.7.1)
