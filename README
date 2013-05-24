@@ -11,6 +11,7 @@ Prerequisites:
 
 * python (tested on 2.7.1)
 * lxml
+* cssselect
 * BeautifulSoup
 
 check_requests.py
