@@ -54,8 +54,16 @@ class ShopWebsite(Website):
         for consignment_number, consignment_url in consignments.items():
             if self.debug:
                 print 'consignment:' + consignment_number
+
+            # Website is currently giving us broken URLs to the old ANC website
+            consignment_url = self.fix_up_consignment_url(consignment_url)
+
             self.track_activity(order_number,
                                 consignment_number, consignment_url)
+
+    def fix_up_consignment_url(self, consignment_url):
+        return consignment_url.replace('http://www2.anc.co.uk/',
+                                       'https://www.fedexuk.net/')
 
     def track_activity(self, order_number, consignment_number, tracking_url):
 
